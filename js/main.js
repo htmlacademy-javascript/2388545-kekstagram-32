@@ -31,6 +31,14 @@ const NAME = [
 ];
 
 const SIMILAR_PHOTOS_COUNT = 25;
+const LIKES_MIN_COUNT = 15;
+const LIKES_MAX_COUNT = 200;
+const COMMENT_MIN_COUNT = 0;
+const COMMENT_MAX_COUNT = 30;
+const AVATAR_MIN_COUNT = 1;
+const AVATAR_MAX_COUNT = 6;
+const MESSAGE_MIN_COUNT = 1;
+const MESSAGE_MAX_COUNT = 2;
 
 //генерирует случайное число в диапазоне
 const getRandomInteger = (a, b) => {
@@ -60,27 +68,42 @@ function createRandomIdFromRangeGenerator (min, max) {
   };
 }
 
-const generateId = createRandomIdFromRangeGenerator(1, 25);
+//генерирует id без повторений без ограничения диапазона
+const createIdGenerator = () => {
+  let numberId = 0;
+
+  return () => {
+    numberId += 1;
+    return numberId;
+  }
+}
+
+const generateRandomId = createIdGenerator();
+
+//почему здесь нужна функция () => , а нельзя просто написать getRandomArrayElement(MESSAGE)
+const createMessage = () => Array.from({length: getRandomInteger(MESSAGE_MIN_COUNT, MESSAGE_MAX_COUNT)}, () => getRandomArrayElement(MESSAGE)).join(' ');
 
 const generateComments = () => {
   return {
-    id: getRandomInteger(0, 10000000000),
-    avatar: 'img/avatar-' + getRandomInteger(1, 6) + '.svg',
-    message: getRandomArrayElement(MESSAGE),
+    id: generateRandomId(),
+    avatar: `img/avatar-${getRandomInteger(AVATAR_MIN_COUNT, AVATAR_MAX_COUNT)}.svg`,
+    message: createMessage(),
     name: getRandomArrayElement(NAME)
   }
 }
 
-const createPhoto = () => {
+const createPhoto = (inputId) => {
   return {
-    id: generateId(),
-    url: 'photos/' + generateId() + '.jpg',
+    id: inputId,
+    url: `photos/${inputId}.jpg`,
     description: getRandomArrayElement(DESCRIPTION),
-    likes: getRandomInteger(15, 200),
-    comments: Array.from({length: getRandomInteger(0, 30)}, generateComments)
+    likes: getRandomInteger(LIKES_MIN_COUNT, LIKES_MAX_COUNT),
+    comments: Array.from({length: getRandomInteger(COMMENT_MIN_COUNT, COMMENT_MAX_COUNT)}, generateComments)
   };
 };
 
-const similarPhotos = Array.from({length: 25}, createPhoto);
+const similarPhotos = Array.from({length: SIMILAR_PHOTOS_COUNT}, (_, index) => createPhoto(index + 1));
 
 console.log(similarPhotos);
+
+
