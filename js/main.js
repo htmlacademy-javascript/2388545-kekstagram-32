@@ -1,3 +1,5 @@
+import {getRandomInteger, getRandomArrayElement, generateRandomId} from './utils';
+
 const DESCRIPTION = [
   'Красивый вид из окна',
   'Еловый лес',
@@ -40,47 +42,6 @@ const AVATAR_MAX_COUNT = 6;
 const MESSAGE_MIN_COUNT = 1;
 const MESSAGE_MAX_COUNT = 2;
 
-//генерирует случайное число в диапазоне
-const getRandomInteger = (a, b) => {
-  const lower = Math.ceil(Math.min(a, b));
-  const upper = Math.floor(Math.max(a, b));
-  const result = Math.random() * (upper - lower + 1) + lower;
-  return Math.floor(result);
-};
-
-const getRandomArrayElement = (elements) => elements[getRandomInteger(0, elements.length - 1)];
-
-//генерирует случайное число в диапазоне без повторений
-const createRandomIdFromRangeGenerator = (min, max) => {
-  const previousValues = [];
-
-  return function () {
-    let currentValue = getRandomInteger(min, max);
-    if (previousValues.length >= (max - min + 1)) {
-      console.error('Перебраны все числа из диапазона от ' + min + ' до ' + max);
-      return null;
-    }
-    while (previousValues.includes(currentValue)) {
-      currentValue = getRandomInteger(min, max);
-    }
-    previousValues.push(currentValue);
-    return currentValue;
-  };
-};
-
-//генерирует id без повторений без ограничения диапазона
-const createIdGenerator = () => {
-  let numberId = 0;
-
-  return () => {
-    numberId += 1;
-    return numberId;
-  };
-};
-
-const generateRandomId = createIdGenerator();
-
-//почему здесь нужна функция () => , а нельзя просто написать getRandomArrayElement(MESSAGE)
 const createMessage = () => Array.from({length: getRandomInteger(MESSAGE_MIN_COUNT, MESSAGE_MAX_COUNT)}, () => getRandomArrayElement(MESSAGE)).join(' ');
 
 const generateComments = () => ({
@@ -101,5 +62,3 @@ const createPhoto = (inputId) => ({
 const similarPhotos = Array.from({length: SIMILAR_PHOTOS_COUNT}, (_, index) => createPhoto(index + 1));
 
 console.log(similarPhotos);
-
-
