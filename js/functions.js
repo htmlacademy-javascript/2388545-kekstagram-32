@@ -62,8 +62,7 @@ getNumber(45);
 
 const converseToMinutes = (timeStroke) => {
   let timeInMinutes = timeStroke.split(':');
-  timeInMinutes = parseInt(timeInMinutes[0], 10) * 60 + parseInt(timeInMinutes[1], 10);
-  return timeInMinutes
+  return parseInt(timeInMinutes[0], 10) * 60 + parseInt(timeInMinutes[1], 10);
 }
 
 const IsMeetInWork = (workStartTime, workEndTime, meetStartTime, meetDuration) => {
@@ -73,7 +72,6 @@ const IsMeetInWork = (workStartTime, workEndTime, meetStartTime, meetDuration) =
 
   if (meetStart >= workStart) {
     if ((meetStart + meetDuration) <= workEnd) {
-      console.log(meetStart);
       return true;
     }
   }
@@ -86,3 +84,4 @@ console.log('Начало во время рабочего дня, встреч�
 console.log('Начало во время рабочего дня, встреча не укладывается, ожидаю false, получаю', IsMeetInWork('08:00', '14:30', '14:00', 90));
 console.log('Начало до рабочего дня, встреча не укладывается, ожидаю false, получаю', IsMeetInWork('14:00', '17:30', '08:0', 90));
 console.log('Начало во время рабочего дня, встреча не укладывается, ожидаю false, получаю', IsMeetInWork('8:00', '17:30', '08:00', 900));
+
