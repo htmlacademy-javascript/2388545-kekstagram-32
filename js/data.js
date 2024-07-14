@@ -59,6 +59,6 @@ const createPhoto = (inputId) => ({
   comments: Array.from({length: getRandomInteger(COMMENT_MIN_COUNT, COMMENT_MAX_COUNT)}, generateComments)
 });
 
-const similarPhotos = Array.from({length: SIMILAR_PHOTOS_COUNT}, (_, index) => createPhoto(index + 1));
+const similarPhotos = () => Array.from({length: SIMILAR_PHOTOS_COUNT}, (_, index) => createPhoto(index + 1));
 
-console.log(similarPhotos);
+export {similarPhotos};
