@@ -9,12 +9,12 @@ const photosList = similarPhotos();
 
 const photoListFragment = document.createDocumentFragment();
 
-photosList.forEach((photo) => {
+photosList.forEach(({url, description, likes, comments}) => {
   const photoElement = pictureTemplate.cloneNode(true);
-  photoElement.querySelector('.picture__img').src = photo.url;
-  photoElement.querySelector('.picture__img').alt = photo.description;
-  photoElement.querySelector('.picture__likes').textContent = photo.likes;
-  photoElement.querySelector('.picture__comments').textContent = photo.comments.length;
+  photoElement.querySelector('.picture__img').src = url;
+  photoElement.querySelector('.picture__img').alt = description;
+  photoElement.querySelector('.picture__likes').textContent = likes;
+  photoElement.querySelector('.picture__comments').textContent = comments.length;
   photoListFragment.appendChild(photoElement);
 });
 
