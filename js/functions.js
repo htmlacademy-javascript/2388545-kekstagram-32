@@ -61,14 +61,14 @@ getNumber(45);
 //ЗАДАЧА ДЕЛУ-ВРЕМЯ
 
 const converseToMinutes = (timeStroke) => {
-  let timeInMinutes = timeStroke.split(':');
+  const timeInMinutes = timeStroke.split(':');
   return parseInt(timeInMinutes[0], 10) * 60 + parseInt(timeInMinutes[1], 10);
-}
+};
 
 const IsMeetInWork = (workStartTime, workEndTime, meetStartTime, meetDuration) => {
-  let workStart = converseToMinutes(workStartTime);
-  let workEnd = converseToMinutes(workEndTime);
-  let meetStart = converseToMinutes(meetStartTime);
+  const workStart = converseToMinutes(workStartTime);
+  const workEnd = converseToMinutes(workEndTime);
+  const meetStart = converseToMinutes(meetStartTime);
 
   if (meetStart >= workStart) {
     if ((meetStart + meetDuration) <= workEnd) {
@@ -77,11 +77,13 @@ const IsMeetInWork = (workStartTime, workEndTime, meetStartTime, meetDuration) =
   }
 
   return false;
-}
+};
 
-console.log('Начало во время рабочего дня, встреча укладывается, ожидаю true, получаю', IsMeetInWork('08:00', '17:30', '14:00', 90));
-console.log('Начало во время рабочего дня, встреча укладывается, ожидаю true, получаю', IsMeetInWork('8:0', '10:0', '8:0', 120));
-console.log('Начало во время рабочего дня, встреча не укладывается, ожидаю false, получаю', IsMeetInWork('08:00', '14:30', '14:00', 90));
-console.log('Начало до рабочего дня, встреча не укладывается, ожидаю false, получаю', IsMeetInWork('14:00', '17:30', '08:0', 90));
-console.log('Начало во время рабочего дня, встреча не укладывается, ожидаю false, получаю', IsMeetInWork('8:00', '17:30', '08:00', 900));
+IsMeetInWork('08:00', '17:30', '14:00', 90);
+
+// console.log('Начало во время рабочего дня, встреча укладывается, ожидаю true, получаю', IsMeetInWork('08:00', '17:30', '14:00', 90));
+// console.log('Начало во время рабочего дня, встреча укладывается, ожидаю true, получаю', IsMeetInWork('8:0', '10:0', '8:0', 120));
+// console.log('Начало во время рабочего дня, встреча не укладывается, ожидаю false, получаю', IsMeetInWork('08:00', '14:30', '14:00', 90));
+// console.log('Начало до рабочего дня, встреча не укладывается, ожидаю false, получаю', IsMeetInWork('14:00', '17:30', '08:0', 90));
+// console.log('Начало во время рабочего дня, встреча не укладывается, ожидаю false, получаю', IsMeetInWork('8:00', '17:30', '08:00', 900));
 
