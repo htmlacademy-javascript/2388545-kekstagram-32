@@ -3,7 +3,7 @@ const pictureTemplate = document.querySelector('#picture')
   .content
   .querySelector('.picture');
 
-const photosList = (photo) => {
+const getPhotoList = (photo) => {
   const photoListFragment = document.createDocumentFragment();
 
   photo.forEach(({url, description, likes, comments}) => {
@@ -18,4 +18,4 @@ const photosList = (photo) => {
   pictureList.append(photoListFragment);
 };
 
-export {photosList};
+export {getPhotoList};
