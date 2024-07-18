@@ -1,7 +1,7 @@
 import { isEscapeKey, isEnterKey } from './utils.js';
 import { renderFullSizePhoto } from './render-full-size-photo.js';
 
-const onePhotoOpen = (photoArray) => {
+const onPhotoOpen = (photoArray) => {
   const fullSizePhoto = document.querySelector('.big-picture');
   const closeFullSizePhoto = fullSizePhoto.querySelector('.cancel');
 
@@ -42,5 +42,4 @@ const onePhotoOpen = (photoArray) => {
   });
 }
 
-
-export {onePhotoOpen};
+export {onPhotoOpen};
