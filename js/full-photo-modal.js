@@ -1,43 +1,46 @@
-import {isEscapeKey, isEnterKey} from './utils.js';
-import {renderFullSizePhoto} from './render-full-size-photo.js';
+import { isEscapeKey, isEnterKey } from './utils.js';
+import { renderFullSizePhoto } from './render-full-size-photo.js';
 
-const photoList = document.querySelectorAll('.picture');
-const fullSizePhoto = document.querySelector('.big-picture');
-const closeFullSizePhoto = fullSizePhoto.querySelector('.cancel');
+const onePhotoOpen = (photoArray) => {
+  const fullSizePhoto = document.querySelector('.big-picture');
+  const closeFullSizePhoto = fullSizePhoto.querySelector('.cancel');
 
-const onDocumentKeydown = (evt) => {
-  if (isEscapeKey(evt)) {
-    evt.preventDefault();
-    closeUserModal();
+  const onDocumentKeydown = (evt) => {
+    if (isEscapeKey(evt)) {
+      evt.preventDefault();
+      closeUserModal();
+    }
+  };
+
+  function openUserModal() {
+    fullSizePhoto.classList.remove('hidden');
+    document.body.classList.add('modal-open');
+    document.addEventListener('keydown', onDocumentKeydown);
   }
-};
 
-function openUserModal () {
-  fullSizePhoto.classList.remove('hidden');
+  function closeUserModal() {
+    fullSizePhoto.classList.add('hidden');
+    document.body.classList.remove('modal-open');
+    document.removeEventListener('keydown', onDocumentKeydown);
+  }
 
-  document.addEventListener('keydown', onDocumentKeydown);
+  photoArray.forEach((photo) => {
+    photo.addEventListener('click', () => {
+      renderFullSizePhoto(photo);
+      openUserModal();
+    });
+  })
+
+  closeFullSizePhoto.addEventListener('click', () => {
+    closeUserModal();
+  });
+
+  closeFullSizePhoto.addEventListener('keydown', (evt) => {
+    if (isEnterKey(evt)) {
+      closeUserModal();
+    }
+  });
 }
 
-function closeUserModal () {
-  fullSizePhoto.classList.add('hidden');
 
-  document.removeEventListener('keydown', onDocumentKeydown);
-}
-
-//тут должен быть обработчик на клик по миниатюре (открытие большого фото), но он лежит в render-full-size-photo
-
-// photoList.forEach((photo) => {
-//   openUserModal ();
-//   photo.addEventListener('click', renderFullSizePhoto(photoList));
-
-// })
-
-closeFullSizePhoto.addEventListener('click', () => {
-  closeUserModal();
-});
-
-closeFullSizePhoto.addEventListener('keydown', (evt) => {
-  if (isEnterKey(evt)) {
-    closeUserModal();
-  }
-});
+export {onePhotoOpen};
