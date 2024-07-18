@@ -46,7 +46,9 @@ const renderFullSizePhoto = (photoItem, dataItem) => {
   });
 
   commentContainer.appendChild(fragment);
+};
 
+const showComment = () => {
   const commentList = fullSizePhoto.querySelectorAll('.social__comment');
 
   let shownCommentTotal = commentList.length;
@@ -89,5 +91,5 @@ const renderFullSizePhoto = (photoItem, dataItem) => {
   });
 }
 
-export { renderFullSizePhoto };
+export { renderFullSizePhoto, showComment };
 

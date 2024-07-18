@@ -1,5 +1,5 @@
 import { isEscapeKey, isEnterKey } from './utils.js';
-import { renderFullSizePhoto } from './render-full-size-photo.js';
+import { renderFullSizePhoto, showComment } from './render-full-size-photo.js';
 
 const onPhotoOpen = (photoArray, dataArray) => {
   const fullSizePhoto = document.querySelector('.big-picture');
@@ -27,6 +27,7 @@ const onPhotoOpen = (photoArray, dataArray) => {
   for (let i = 0; i < photoArray.length; i++) {
     photoArray[i].addEventListener('click', () => {
       renderFullSizePhoto(photoArray[i], dataArray[i]);
+      showComment();
       openUserModal();
     });
   }
