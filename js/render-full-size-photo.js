@@ -25,6 +25,8 @@ const renderFullSizePhoto = (photoItem, dataItem) => {
   commentsTotal.textContent = commentsCount.textContent;
   description.textContent = imgAlt;
 
+  commentContainer.innerHTML = '';
+
   dataItem.comments.forEach((comment) => {
     const newElement = document.createElement('li');
     newElement.classList.add('social__comment');
