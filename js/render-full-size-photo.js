@@ -1,6 +1,7 @@
 import {
   AVATAR_WIDTH,
-  AVATAR_HEIGHT
+  AVATAR_HEIGHT,
+  SHOWN_COMMENTS_PORTION
 } from './constants';
 
 const fullSizePhoto = document.querySelector('.big-picture');
@@ -53,11 +54,11 @@ const showComment = () => {
 
   let shownCommentTotal = commentList.length;
 
-  if (commentList.length > 5) {
-    shownCommentTotal = 5;
+  if (commentList.length > SHOWN_COMMENTS_PORTION) {
+    shownCommentTotal = SHOWN_COMMENTS_PORTION;
     commentsLoader.classList.remove('hidden');
 
-    for (let i = 5; i < commentList.length; i++) {
+    for (let i = SHOWN_COMMENTS_PORTION; i < commentList.length; i++) {
       commentList[i].classList.add('hidden');
     }
   } else {
@@ -69,14 +70,14 @@ const showComment = () => {
   commentsLoader.addEventListener('click', () => {
     let showCounter = 0;
 
-    for (let i = 0; i < commentList.length; i++) {
+    for (let i = shownCommentTotal; i < commentList.length; i++) {
       if (commentList[i].classList.contains('hidden')) {
         commentList[i].classList.remove('hidden');
         showCounter += 1;
         shownCommentTotal += 1;
       }
 
-      if (showCounter === 5) {
+      if (showCounter === SHOWN_COMMENTS_PORTION) {
         break;
       }
     }
