@@ -1,7 +1,7 @@
 import { isEscapeKey, isEnterKey } from './utils.js';
 import { renderFullSizePhoto } from './render-full-size-photo.js';
 
-const onPhotoOpen = (photoArray) => {
+const onPhotoOpen = (photoArray, dataArray) => {
   const fullSizePhoto = document.querySelector('.big-picture');
   const closeFullSizePhoto = fullSizePhoto.querySelector('.cancel');
 
@@ -24,12 +24,12 @@ const onPhotoOpen = (photoArray) => {
     document.removeEventListener('keydown', onDocumentKeydown);
   }
 
-  photoArray.forEach((photo) => {
-    photo.addEventListener('click', () => {
-      renderFullSizePhoto(photo);
+  for (let i = 0; i < photoArray.length; i++) {
+    photoArray[i].addEventListener('click', () => {
+      renderFullSizePhoto(photoArray[i], dataArray[i]);
       openUserModal();
     });
-  })
+  }
 
   closeFullSizePhoto.addEventListener('click', () => {
     closeUserModal();
@@ -42,4 +42,4 @@ const onPhotoOpen = (photoArray) => {
   });
 }
 
-export {onPhotoOpen};
+export { onPhotoOpen };

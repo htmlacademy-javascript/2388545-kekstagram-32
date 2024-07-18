@@ -39,3 +39,5 @@ export const AVATAR_MIN_COUNT = 1;
 export const AVATAR_MAX_COUNT = 6;
 export const MESSAGE_MIN_COUNT = 1;
 export const MESSAGE_MAX_COUNT = 2;
+export const AVATAR_WIDTH = 35;
+export const AVATAR_HEIGHT = 35;
