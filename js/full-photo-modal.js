@@ -41,6 +41,6 @@ const onPhotoOpen = (photoArray, dataArray) => {
       closeUserModal();
     }
   });
-}
+};
 
 export { onPhotoOpen };

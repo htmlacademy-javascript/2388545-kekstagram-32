@@ -89,7 +89,7 @@ const showComment = () => {
 
     shownCommentCount.textContent = shownCommentTotal;
   });
-}
+};
 
 export { renderFullSizePhoto, showComment };
 
