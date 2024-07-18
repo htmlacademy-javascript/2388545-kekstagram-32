@@ -7,10 +7,11 @@ const fullSizePhoto = document.querySelector('.big-picture');
 const imgWrap = fullSizePhoto.querySelector('.big-picture__img');
 const img = imgWrap.querySelector('img');
 const likes = fullSizePhoto.querySelector('.likes-count');
-const commentsShown = fullSizePhoto.querySelector('.social__comment-shown-count');
+const shownCommentCount = fullSizePhoto.querySelector('.social__comment-shown-count');
 const commentsTotal = fullSizePhoto.querySelector('.social__comment-total-count');
 const description = fullSizePhoto.querySelector('.social__caption');
 const commentContainer = fullSizePhoto.querySelector('.social__comments');
+const commentsLoader = fullSizePhoto.querySelector('.comments-loader');
 
 const renderFullSizePhoto = (photoItem, dataItem) => {
   const imgSrc = photoItem.querySelector('.picture__img').src;
@@ -45,6 +46,47 @@ const renderFullSizePhoto = (photoItem, dataItem) => {
   });
 
   commentContainer.appendChild(fragment);
+
+  const commentList = fullSizePhoto.querySelectorAll('.social__comment');
+
+  let shownCommentTotal = commentList.length;
+
+  if (commentList.length > 5) {
+    shownCommentTotal = 5;
+    commentsLoader.classList.remove('hidden');
+
+    for (let i = 5; i < commentList.length; i++) {
+      commentList[i].classList.add('hidden');
+    }
+  } else {
+    commentsLoader.classList.add('hidden');
+  }
+
+  shownCommentCount.textContent = shownCommentTotal;
+
+  commentsLoader.addEventListener('click', () => {
+    let showCounter = 0;
+
+    for (let i = 0; i < commentList.length; i++) {
+      if (commentList[i].classList.contains('hidden')) {
+        commentList[i].classList.remove('hidden');
+        showCounter += 1;
+        shownCommentTotal += 1;
+      }
+
+      if (showCounter === 5) {
+        break;
+      }
+    }
+
+    if (shownCommentTotal === commentList.length) {
+      commentsLoader.classList.add('hidden');
+    } else {
+      commentsLoader.classList.remove('hidden');
+    }
+
+    shownCommentCount.textContent = shownCommentTotal;
+  });
 }
 
 export { renderFullSizePhoto };
