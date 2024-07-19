@@ -33,6 +33,6 @@ pictureList.addEventListener('click', (evt) => {
     const photoDataItem = localPhotos.find((item) => item.id === photoId);
     openUserModal(photoDataItem);
   }
-})
+});
 
 export { getPhotoList };

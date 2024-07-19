@@ -36,15 +36,15 @@ const renderComment = ({ avatar, message, name }) => {
 
 const renderLoaderButton = () => {
   if (countRenderedComments < totalComments) {
-    commentsLoader.classList.remove('hidden')
+    commentsLoader.classList.remove('hidden');
   } else {
-    commentsLoader.classList.add('hidden')
+    commentsLoader.classList.add('hidden');
   }
 };
 
 const renderStatistic = () => {
   shownCommentCount.textContent = countRenderedComments;
-}
+};
 
 const renderComments = () => {
   const fragment = document.createDocumentFragment();
@@ -52,7 +52,7 @@ const renderComments = () => {
   localComments.splice(0, SHOWN_COMMENTS_PORTION).forEach((item) => {
     fragment.append(renderComment(item));
     countRenderedComments++;
-  })
+  });
 
   commentContainer.append(fragment);
   renderLoaderButton();

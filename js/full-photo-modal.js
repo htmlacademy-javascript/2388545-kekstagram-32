@@ -9,20 +9,20 @@ const openUserModal = (photo) => {
   document.body.classList.add('modal-open');
   document.addEventListener('keydown', onDocumentKeydown);
   renderFullSizePhoto(photo);
-}
+};
 
 const closeUserModal = () => {
   fullSizePhoto.classList.add('hidden');
   document.body.classList.remove('modal-open');
   document.removeEventListener('keydown', onDocumentKeydown);
-}
+};
 
 function onDocumentKeydown(evt) {
   if (isEscapeKey(evt)) {
     evt.preventDefault();
     closeUserModal();
   }
-};
+}
 
 closeFullSizePhoto.addEventListener('click', () => {
   closeUserModal();
