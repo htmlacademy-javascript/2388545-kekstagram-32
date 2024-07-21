@@ -31,3 +31,21 @@ function onDocumentKeydown(evt) {
     closeRedactForm();
   }
 }
+
+const hashtagField = document.querySelector('.text__hashtags');
+const commentField = document.querySelector('.text__description');
+
+
+hashtagField.addEventListener('keydown', (evt) => {
+  if (isEscapeKey(evt)) {
+    evt.stopPropagation();
+  }
+});
+
+commentField.addEventListener('keydown', (evt) => {
+  if (isEscapeKey(evt)) {
+    evt.stopPropagation();
+  }
+});
+
+
