@@ -1,8 +1,12 @@
 import { isEscapeKey } from './utils.js';
+import { isValid } from './img-upload-form-validate.js';
 
+const imgUploadform = document.querySelector('.img-upload__form');
 const uploadInput = document.querySelector('.img-upload__input');
 const redactForm = document.querySelector('.img-upload__overlay');
 const closeFormButton = document.querySelector('.img-upload__cancel');
+const hashtagField = document.querySelector('.text__hashtags');
+const commentField = document.querySelector('.text__description');
 
 const openRedactForm = () => {
   redactForm.classList.remove('hidden');
@@ -32,10 +36,6 @@ function onDocumentKeydown(evt) {
   }
 }
 
-const hashtagField = document.querySelector('.text__hashtags');
-const commentField = document.querySelector('.text__description');
-
-
 hashtagField.addEventListener('keydown', (evt) => {
   if (isEscapeKey(evt)) {
     evt.stopPropagation();
@@ -48,4 +48,8 @@ commentField.addEventListener('keydown', (evt) => {
   }
 });
 
-
+imgUploadform.addEventListener('submit', (evt) => {
+  if(!isValid()){
+    evt.preventDefault();
+  }
+});

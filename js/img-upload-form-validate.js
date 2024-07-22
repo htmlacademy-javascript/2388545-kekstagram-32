@@ -1,4 +1,13 @@
+import {
+  HASHTAG_STANDARD,
+  SPACE,
+  MAX_HASHTAG_COUNT,
+  MAX_COMMENT_LENGTH
+} from './constants.js';
+
 const imgUploadform = document.querySelector('.img-upload__form');
+const hashtagField = imgUploadform.querySelector('.text__hashtags');
+const commentField = imgUploadform.querySelector('.text__description');
 
 const pristine = new Pristine(imgUploadform, {
   classTo: 'img-upload__field-wrapper',
@@ -6,33 +15,59 @@ const pristine = new Pristine(imgUploadform, {
   errorTextClass: 'img-upload__field-error'
 });
 
-const hashtagField = imgUploadform.querySelector('.text__hashtags');
-const hashtagCheck = /^#[a-zа-яё0-9]{1,19}$/i;
+const normalizeHashtag = (value) => !value.length ? [] : hashtagField.value.toLowerCase().replaceAll(SPACE, ' ').trim().split(' ');
 
-const validateHashtag = () => {
-  const hashtagArray = hashtagField.value.split(' ');
-  const checkingArray = [];
-
-  for (let i = 0; i < hashtagArray.length; i++) {
-    if (hashtagCheck.test(hashtagArray[i]) && !checkingArray.includes(hashtagArray[i]) && hashtagArray.length <= 5) {
-      checkingArray.push(hashtagArray[i]);
-    } else {
-      return false;
-    }
-  }
-  return true;
+const validateFormatHashtag = (value) => {
+  const hashes = normalizeHashtag(value);
+  return hashes.every((hashtag) => HASHTAG_STANDARD.test(hashtag))
 };
 
-pristine.addValidator(hashtagField, validateHashtag, 'Неверный формат');
+const checkUnique = (value) => {
+  const hashes = normalizeHashtag(value);
+  const uniques = [...new Set(hashes)];
+  return hashes.length === uniques.length;
+};
 
-const commentField = imgUploadform.querySelector('.text__description');
+const checkCount = (value) => {
+  const hashes = normalizeHashtag(value);
+  return hashes.length <= MAX_HASHTAG_COUNT;
+};
 
-const validateComment = () => commentField.value.length <= 140;
+pristine.addValidator(
+  hashtagField,
+  validateFormatHashtag,
+  'Хэштег состоит из букв и цифр, максимальная длина 20 символов',
+  1,
+  true
+);
 
-pristine.addValidator(commentField, validateComment, 'Длина комментария не может превышать 140 символов');
+pristine.addValidator(
+  hashtagField,
+  checkUnique,
+  'Хэштеги не могут повторяться',
+  2,
+  true
+);
 
-imgUploadform.addEventListener('submit', (evt) => {
-  evt.preventDefault();
-  pristine.validate();
-});
+pristine.addValidator(
+  hashtagField,
+  checkCount,
+  'Разрешено не более пяти хэштегов',
+  3,
+  true
+);
+
+const validateComment = () => commentField.value.length <= MAX_COMMENT_LENGTH;
+
+pristine.addValidator(
+  commentField,
+  validateComment,
+  `Длина комментария не может превышать ${MAX_COMMENT_LENGTH} символов`);
+
+const isValid = () => pristine.validate();
+
+export { isValid }
+
+
+
 
