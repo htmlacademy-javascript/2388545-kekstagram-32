@@ -47,3 +47,7 @@ export const HASHTAG_STANDARD = /^#[a-zа-яё0-9]{1,19}$/i;
 export const SPACE = /\s+/g;
 export const MAX_HASHTAG_COUNT = 5;
 export const MAX_COMMENT_LENGTH = 140;
+export const SCALE_STEP = 25;
+export const SCALE_MIN = 25;
+export const SCALE_MAX = 100;
+
