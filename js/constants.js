@@ -43,3 +43,7 @@ export const AVATAR_WIDTH = 35;
 export const AVATAR_HEIGHT = 35;
 export const SHOWN_COMMENTS_PORTION = 5;
 
+export const HASHTAG_STANDARD = /^#[a-zа-яё0-9]{1,19}$/i;
+export const SPACE = /\s+/g;
+export const MAX_HASHTAG_COUNT = 5;
+export const MAX_COMMENT_LENGTH = 140;
