@@ -30,7 +30,7 @@ scaleBigger.addEventListener('click', () => {
     scaleValue.value = scaleNumber + '%';
     scaleNumber /= 100;
     imgPreview.style.transform = `scale(${scaleNumber})`;
-  }else {
+  } else {
     scaleBigger.disabled = true;
   }
 });

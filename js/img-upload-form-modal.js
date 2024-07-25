@@ -1,5 +1,5 @@
 import { isEscapeKey } from './utils.js';
-import { isValid } from './img-upload-form-validate.js';
+import { isValid, resetValidation } from './img-upload-form-validate.js';
 import './img-scale-change.js';
 import './img-add-filter.js'
 
@@ -21,6 +21,7 @@ const closeRedactForm = () => {
   document.body.classList.remove('modal-open');
   uploadInput.value = '';
   document.removeEventListener('keydown', onDocumentKeydown);
+  resetValidation();
 };
 
 uploadInput.addEventListener('change', () => {

@@ -5,11 +5,11 @@ import {
   MAX_COMMENT_LENGTH
 } from './constants.js';
 
-const imgUploadform = document.querySelector('.img-upload__form');
-const hashtagField = imgUploadform.querySelector('.text__hashtags');
-const commentField = imgUploadform.querySelector('.text__description');
+const imgUploadForm = document.querySelector('.img-upload__form');
+const hashtagField = imgUploadForm.querySelector('.text__hashtags');
+const commentField = imgUploadForm.querySelector('.text__description');
 
-const pristine = new Pristine(imgUploadform, {
+const pristine = new Pristine(imgUploadForm, {
   classTo: 'img-upload__field-wrapper',
   errorTextParent: 'img-upload__field-wrapper',
   errorTextClass: 'img-upload__field-error'
@@ -66,7 +66,11 @@ pristine.addValidator(
 
 const isValid = () => pristine.validate();
 
-export { isValid }
+const resetValidation = () => {
+  pristine.reset();
+};
+
+export { isValid, resetValidation }
 
 
 
