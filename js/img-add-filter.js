@@ -5,12 +5,12 @@ const filterList = document.querySelector('.effects__list');
 const sliderElement = document.querySelector('.effect-level__slider');
 const valueElement = document.querySelector('.effect-level__value');
 
-const effectsArray = Object.keys(EFFECTS).map(key => EFFECTS[key]);
+const effectsArray = Object.keys(EFFECTS).map((key) => EFFECTS[key]);
 
 const setFilter = ({ style, max, unit }) => {
   imgPreview.style.filter = '';
   imgPreview.style.filter = `${style}(${max}${unit})`;
-}
+};
 
 const hideSlider = () => {
   sliderElement.classList.add('hidden');
@@ -23,8 +23,8 @@ const showSlider = () => {
 const onSliderUpdate = () => {
   const style = document.querySelector('.effects__radio:checked').value;
   valueElement.value = sliderElement.noUiSlider.get();
-  imgPreview.style.filter = `${EFFECTS[style].style}(${valueElement.value}${EFFECTS[style].unit})`
-}
+  imgPreview.style.filter = `${EFFECTS[style].style}(${valueElement.value}${EFFECTS[style].unit})`;
+};
 
 const createSlider = ({ max, min, step }) => {
   noUiSlider.create(sliderElement, {
@@ -48,7 +48,7 @@ const updateSlider = ({ min, max, step }) => {
     start: max,
     step,
   });
-}
+};
 
 filterList.addEventListener('change', (evt) => {
   const effectItem = effectsArray.find((item) => item.name === evt.target.value);

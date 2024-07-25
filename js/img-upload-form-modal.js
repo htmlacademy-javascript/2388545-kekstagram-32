@@ -2,7 +2,7 @@ import { isEscapeKey } from './utils.js';
 import { isValid, resetValidation } from './img-upload-form-validate.js';
 import {resetScale} from './img-scale-change.js';
 import { EFFECTS } from './constants.js';
-import { createSlider, resetSlider } from './img-add-filter.js'
+import { createSlider, resetSlider } from './img-add-filter.js';
 
 const imgUploadform = document.querySelector('.img-upload__form');
 const uploadInput = document.querySelector('.img-upload__input');

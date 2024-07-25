@@ -19,7 +19,7 @@ const normalizeHashtag = (value) => !value.length ? [] : hashtagField.value.toLo
 
 const validateFormatHashtag = (value) => {
   const hashes = normalizeHashtag(value);
-  return hashes.every((hashtag) => HASHTAG_STANDARD.test(hashtag))
+  return hashes.every((hashtag) => HASHTAG_STANDARD.test(hashtag));
 };
 
 const checkUnique = (value) => {
@@ -70,8 +70,4 @@ const resetValidation = () => {
   pristine.reset();
 };
 
-export { isValid, resetValidation }
-
-
-
-
+export { isValid, resetValidation };

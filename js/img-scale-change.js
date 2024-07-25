@@ -10,6 +10,8 @@ const scaleBigger = document.querySelector('.scale__control--bigger');
 const scaleValue = document.querySelector('.scale__control--value');
 const imgPreview = document.querySelector('.img-upload__preview img');
 
+let scaleNumber = parseInt(scaleValue.value, 10);
+
 const isScaleButtonDisabled = () => {
   scaleSmaller.disabled = false;
   scaleBigger.disabled = false;
@@ -23,11 +25,9 @@ const isScaleButtonDisabled = () => {
   }
 };
 
-let scaleNumber = parseInt(scaleValue.value, 10);
-
 const setStyle = (scale) => {
-  scaleValue.value = scale + '%';
-  imgPreview.style.transform = `scale(${scale/100})`;
+  scaleValue.value = `${scale}%`;
+  imgPreview.style.transform = `scale(${scale / 100})`;
 };
 
 scaleSmaller.addEventListener('click', () => {
