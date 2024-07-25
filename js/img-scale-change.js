@@ -2,6 +2,7 @@ import {
   SCALE_STEP,
   SCALE_MIN,
   SCALE_MAX,
+  SCALE_DEFAULT
 } from './constants.js';
 
 const scaleSmaller = document.querySelector('.scale__control--smaller');
@@ -34,3 +35,10 @@ scaleBigger.addEventListener('click', () => {
     scaleBigger.disabled = true;
   }
 });
+
+const resetScale = () => {
+  scaleValue.value = SCALE_DEFAULT + '%';
+  imgPreview.style.transform = `scale(${SCALE_DEFAULT/100})`
+};
+
+export {resetScale};
