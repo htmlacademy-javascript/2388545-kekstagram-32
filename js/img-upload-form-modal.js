@@ -1,8 +1,18 @@
 import { isEscapeKey } from './utils.js';
 import { isValid, resetValidation } from './img-upload-form-validate.js';
-import {resetScale} from './img-scale-change.js';
-import { EFFECTS } from './constants.js';
+import { resetScale } from './img-scale-change.js';
 import { createSlider, resetSlider } from './img-add-filter.js';
+import {
+  EFFECTS,
+  BASE_URL,
+} from './constants.js';
+import {
+  closeRedactForm,
+  showSuccessMessage,
+  showErrorMessage,
+  blockSubmitButton,
+  unblockSubmitButton
+} from './data-send-form-message.js';
 
 const imgUploadform = document.querySelector('.img-upload__form');
 const uploadInput = document.querySelector('.img-upload__input');
@@ -55,8 +65,23 @@ commentField.addEventListener('keydown', (evt) => {
 });
 
 imgUploadform.addEventListener('submit', (evt) => {
-  if(!isValid()){
-    evt.preventDefault();
+  evt.preventDefault();
+
+  if (isValid()) {
+    blockSubmitButton();
+    const formData = new FormData(evt.target);
+
+    fetch(
+      `${BASE_URL}`,
+      {
+        method: 'POST',
+        body: formData,
+      }
+    )
+      .then(() => closeRedactForm())
+      .then(() => showSuccessMessage())
+      .catch(() => showErrorMessage())
+      .finally(unblockSubmitButton);
   }
 });
 
