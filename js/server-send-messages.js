@@ -1,4 +1,5 @@
 import { SubmitButtonText } from './constants.js';
+import { isEscapeKey } from './utils.js';
 
 const submitButton = document.querySelector('.img-upload__submit');
 const errorTemplate = document.querySelector('#error')
@@ -10,9 +11,8 @@ const successTemplate = document.querySelector('#success')
   .querySelector('.success');
 const successMessage = successTemplate.cloneNode(true);
 
-
 const onShowMessage = (message, button, messageInner) => {
-  document.removeEventListener('keydown', onDocumentKeydown);
+  //document.removeEventListener('keydown', onDocumentKeydown);
   document.addEventListener('keydown', onDocumentKeydownForMessage);
   document.addEventListener('click', onDocumentClick);
 
@@ -20,7 +20,7 @@ const onShowMessage = (message, button, messageInner) => {
     message.remove();
     document.removeEventListener('click', onDocumentClick);
     document.removeEventListener('keydown', onDocumentKeydownForMessage);
-    document.addEventListener('keydown', onDocumentKeydown);
+    //document.addEventListener('keydown', onDocumentKeydown);
   };
 
   function onDocumentKeydownForMessage(evt) {

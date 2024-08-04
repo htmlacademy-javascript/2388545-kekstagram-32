@@ -2,17 +2,14 @@ import { isEscapeKey } from './utils.js';
 import { isValid, resetValidation } from './img-upload-form-validate.js';
 import { resetScale } from './img-scale-change.js';
 import { createSlider, resetSlider } from './img-add-filter.js';
+import { sendForm } from './server-connect.js';
+import { EFFECTS } from './constants.js';
 import {
-  EFFECTS,
-  BASE_URL,
-} from './constants.js';
-import {
-  closeRedactForm,
   showSuccessMessage,
   showErrorMessage,
   blockSubmitButton,
   unblockSubmitButton
-} from './data-send-form-message.js';
+} from './server-send-messages.js';
 
 const imgUploadform = document.querySelector('.img-upload__form');
 const uploadInput = document.querySelector('.img-upload__input');
@@ -69,15 +66,9 @@ imgUploadform.addEventListener('submit', (evt) => {
 
   if (isValid()) {
     blockSubmitButton();
-    const formData = new FormData(evt.target);
 
-    fetch(
-      `${BASE_URL}`,
-      {
-        method: 'POST',
-        body: formData,
-      }
-    )
+    const formData = new FormData(evt.target);
+    sendForm(formData)
       .then(() => closeRedactForm())
       .then(() => showSuccessMessage())
       .catch(() => showErrorMessage())
@@ -86,3 +77,5 @@ imgUploadform.addEventListener('submit', (evt) => {
 });
 
 createSlider(EFFECTS.none);
+
+export { onDocumentKeydown }
