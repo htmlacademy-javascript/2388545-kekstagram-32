@@ -44,14 +44,14 @@ const onShowMessage = (message, button, messageInner) => {
 
 const showErrorMessage = () => {
   document.body.appendChild(errorMessage);
-  const errorButton = document.querySelector('.error__button');
+  const errorButton = errorMessage.querySelector('.error__button');
   const errorInner = '.error__inner';
   onShowMessage(errorMessage, errorButton, errorInner);
 };
 
 const showSuccessMessage = () => {
   document.body.appendChild(successMessage);
-  const successButton = document.querySelector('.success__button');
+  const successButton = successMessage.querySelector('.success__button');
   const successInner = '.success__inner';
   onShowMessage(successMessage, successButton, successInner)
 };
