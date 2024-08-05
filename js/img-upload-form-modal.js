@@ -70,8 +70,13 @@ imgUploadform.addEventListener('submit', (evt) => {
 
     const formData = new FormData(evt.target);
     sendForm(formData)
-      .then(() => closeRedactForm())
-      .then(() => showSuccessMessage())
+      .then((response) => {
+        if(!response.ok){
+          throw new Error()
+        }
+        closeRedactForm();
+        showSuccessMessage();
+      })
       .catch(() => showErrorMessage())
       .finally(unblockSubmitButton);
   }

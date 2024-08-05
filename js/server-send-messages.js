@@ -1,5 +1,6 @@
 import { SubmitButtonText } from './constants.js';
 import { isEscapeKey } from './utils.js';
+import { onDocumentKeydown } from './img-upload-form-modal.js';
 
 const submitButton = document.querySelector('.img-upload__submit');
 const errorTemplate = document.querySelector('#error')
@@ -12,7 +13,7 @@ const successTemplate = document.querySelector('#success')
 const successMessage = successTemplate.cloneNode(true);
 
 const onShowMessage = (message, button, messageInner) => {
-  //document.removeEventListener('keydown', onDocumentKeydown);
+  document.removeEventListener('keydown', onDocumentKeydown);
   document.addEventListener('keydown', onDocumentKeydownForMessage);
   document.addEventListener('click', onDocumentClick);
 
@@ -20,7 +21,10 @@ const onShowMessage = (message, button, messageInner) => {
     message.remove();
     document.removeEventListener('click', onDocumentClick);
     document.removeEventListener('keydown', onDocumentKeydownForMessage);
-    //document.addEventListener('keydown', onDocumentKeydown);
+    if (message.classList.contains('error')) {
+      document.addEventListener('keydown', onDocumentKeydown);
+    }
+    button.removeEventListener('click', deleteMessage);
   };
 
   function onDocumentKeydownForMessage(evt) {
@@ -37,9 +41,7 @@ const onShowMessage = (message, button, messageInner) => {
     }
   }
 
-  button.addEventListener('click', () => {
-    deleteMessage();
-  });
+  button.addEventListener('click', deleteMessage);
 };
 
 const showErrorMessage = () => {
