@@ -1,8 +1,15 @@
 import { isEscapeKey } from './utils.js';
 import { isValid, resetValidation } from './img-upload-form-validate.js';
-import {resetScale} from './img-scale-change.js';
-import { EFFECTS } from './constants.js';
+import { resetScale } from './img-scale-change.js';
 import { createSlider, resetSlider } from './img-add-filter.js';
+import { sendForm } from './server-connect.js';
+import { EFFECTS } from './constants.js';
+import {
+  showSuccessMessage,
+  showErrorMessage,
+  blockSubmitButton,
+  unblockSubmitButton
+} from './server-send-messages.js';
 
 const imgUploadform = document.querySelector('.img-upload__form');
 const uploadInput = document.querySelector('.img-upload__input');
@@ -25,6 +32,7 @@ const closeRedactForm = () => {
   resetValidation();
   resetScale();
   resetSlider();
+  imgUploadform.reset();
 };
 
 uploadInput.addEventListener('change', () => {
@@ -55,9 +63,25 @@ commentField.addEventListener('keydown', (evt) => {
 });
 
 imgUploadform.addEventListener('submit', (evt) => {
-  if(!isValid()){
-    evt.preventDefault();
+  evt.preventDefault();
+
+  if (isValid()) {
+    blockSubmitButton();
+
+    const formData = new FormData(evt.target);
+    sendForm(formData)
+      .then((response) => {
+        if(!response.ok){
+          throw new Error()
+        }
+        closeRedactForm();
+        showSuccessMessage();
+      })
+      .catch(() => showErrorMessage())
+      .finally(unblockSubmitButton);
   }
 });
 
 createSlider(EFFECTS.none);
+
+export { onDocumentKeydown }

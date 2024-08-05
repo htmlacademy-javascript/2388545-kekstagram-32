@@ -2,6 +2,7 @@ import { EFFECTS } from './constants.js';
 
 const imgPreview = document.querySelector('.img-upload__preview img');
 const filterList = document.querySelector('.effects__list');
+const sliderContainer = document.querySelector('.img-upload__effect-level');
 const sliderElement = document.querySelector('.effect-level__slider');
 const valueElement = document.querySelector('.effect-level__value');
 
@@ -13,11 +14,11 @@ const setFilter = ({ style, max, unit }) => {
 };
 
 const hideSlider = () => {
-  sliderElement.classList.add('hidden');
+  sliderContainer.classList.add('hidden');
 };
 
 const showSlider = () => {
-  sliderElement.classList.remove('hidden');
+  sliderContainer.classList.remove('hidden');
 };
 
 const onSliderUpdate = () => {

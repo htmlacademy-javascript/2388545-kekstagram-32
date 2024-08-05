@@ -103,3 +103,16 @@ export const EFFECTS = {
     unit: '',
   },
 };
+
+export const BASE_URL = 'https://32.javascript.htmlacademy.pro/kekstagram';
+export const Route = {
+  GET_DATA: '/data',
+  SEND_DATA: '/',
+};
+
+export const SubmitButtonText = {
+  IDLE: 'Опубликовать',
+  SENDING: 'Публикация...'
+};
+
+export const ALERT_SHOW_TIME = 5000;

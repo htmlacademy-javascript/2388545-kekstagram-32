@@ -1,7 +1,5 @@
-import { getSimilarPhotos } from './data.js';
 import { getPhotoList } from './add-pictures.js';
+import { getData } from './server-connect.js';
 import './img-upload-form-modal.js';
 
-const similarPhotoList = getSimilarPhotos();
-getPhotoList(similarPhotoList);
-
+getData(getPhotoList);
