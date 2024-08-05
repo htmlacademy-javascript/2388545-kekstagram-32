@@ -32,6 +32,7 @@ const closeRedactForm = () => {
   resetValidation();
   resetScale();
   resetSlider();
+  imgUploadform.reset();
 };
 
 uploadInput.addEventListener('change', () => {
