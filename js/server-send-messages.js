@@ -32,7 +32,7 @@ const onShowMessage = (message, button, messageInner) => {
       evt.preventDefault();
       deleteMessage();
     }
-  };
+  }
 
   function onDocumentClick(evt) {
     const messageElement = evt.target.closest(messageInner);
@@ -55,7 +55,7 @@ const showSuccessMessage = () => {
   document.body.appendChild(successMessage);
   const successButton = successMessage.querySelector('.success__button');
   const successInner = '.success__inner';
-  onShowMessage(successMessage, successButton, successInner)
+  onShowMessage(successMessage, successButton, successInner);
 };
 
 const blockSubmitButton = () => {
@@ -73,4 +73,4 @@ export {
   showErrorMessage,
   blockSubmitButton,
   unblockSubmitButton
-}
+};

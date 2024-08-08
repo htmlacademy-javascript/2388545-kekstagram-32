@@ -72,7 +72,7 @@ imgUploadform.addEventListener('submit', (evt) => {
     sendForm(formData)
       .then((response) => {
         if(!response.ok){
-          throw new Error()
+          throw new Error();
         }
         closeRedactForm();
         showSuccessMessage();
@@ -84,4 +84,4 @@ imgUploadform.addEventListener('submit', (evt) => {
 
 createSlider(EFFECTS.none);
 
-export { onDocumentKeydown }
+export { onDocumentKeydown };
