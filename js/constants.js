@@ -116,3 +116,6 @@ export const SubmitButtonText = {
 };
 
 export const ALERT_SHOW_TIME = 5000;
+
+export const RANDOM_FILTER_COUNT = 10;
+export const RERENDER_DELAY = 500;
