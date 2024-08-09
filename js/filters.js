@@ -1,9 +1,9 @@
 import { getPhotoList } from './add-pictures.js';
-import { getRandomArrayElement, debounce } from './utils.js'
+import { getRandomArrayElement, debounce } from './utils.js';
 import {
   RANDOM_FILTER_COUNT,
   RERENDER_DELAY
- } from './constants.js'
+} from './constants.js';
 
 const filters = document.querySelector('.img-filters');
 const filtersContainer = document.querySelector('.img-filters__form');
