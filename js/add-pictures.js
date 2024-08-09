@@ -7,7 +7,12 @@ const pictureTemplate = document.querySelector('#picture')
 
 const localPhotos = [];
 
+const clearPhotos = () => {
+  document.querySelectorAll('.picture').forEach((card) => card.remove());
+}
+
 const getPhotoList = (photoArray) => {
+  clearPhotos();
   localPhotos.length = 0;
   localPhotos.push(...photoArray.slice());
   const photoListFragment = document.createDocumentFragment();

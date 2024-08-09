@@ -1,14 +1,19 @@
-import { showDataError } from './server-get-messages';
+import { showDataError } from './server-get-messages.js';
+import { showFilters, onFilterClick } from './filters.js';
 
 const getData = (renderFunction) => {
   fetch('https://32.javascript.htmlacademy.pro/kekstagram/data')
     .then((response) => {
       if (!response.ok) {
-        throw new Error()
+        throw new Error();
       }
-      return response.json()
+      return response.json();
     })
-    .then((data) => renderFunction(data))
+    .then((data) => {
+      renderFunction(data);
+      showFilters();
+      onFilterClick(data);
+    })
     .catch(() => showDataError());
 };
 
@@ -18,7 +23,6 @@ const sendForm = (formData) =>
       method: 'POST',
       body: formData,
     }
-  )
-  ;
+  );
 
-export { getData, sendForm }
+export { getData, sendForm };
