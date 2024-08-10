@@ -61,7 +61,7 @@ const onFilterClick = (photos) => {
     if (evt.target === discussedButton) {
       setDiscussedFilter(photos);
     }
-  }), RERENDER_DELAY);
+  }, RERENDER_DELAY));
 };
 
 filters.addEventListener('click', (evt) => {
