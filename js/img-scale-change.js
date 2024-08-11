@@ -50,4 +50,4 @@ const resetScale = () => {
   setStyle(SCALE_DEFAULT);
 };
 
-export {resetScale};
+export { resetScale };

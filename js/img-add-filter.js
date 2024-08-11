@@ -68,4 +68,4 @@ const resetSlider = () => {
   hideSlider();
 };
 
-export {createSlider, resetSlider};
+export { createSlider, resetSlider };
