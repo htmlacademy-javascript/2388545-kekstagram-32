@@ -18,7 +18,7 @@ const getData = (renderFunction) => {
 };
 
 const sendForm = (formData) =>
-  fetch('https://32.javascript.htmlacademy.pro/kekstagram',
+  fetch('https://32.javascript.htmlacademy.pro/kekstagram/',
     {
       method: 'POST',
       body: formData,
