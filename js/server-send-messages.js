@@ -58,19 +58,13 @@ const showSuccessMessage = () => {
   onShowMessage(successMessage, successButton, successInner);
 };
 
-const blockSubmitButton = () => {
-  submitButton.disabled = true;
-  submitButton.textContent = SubmitButtonText.SENDING;
-};
-
-const unblockSubmitButton = () => {
-  submitButton.disabled = false;
-  submitButton.textContent = SubmitButtonText.IDLE;
+const blockSubmitButton = (isBlock = true) => {
+  submitButton.disabled = isBlock;
+  submitButton.textContent = isBlock ? SubmitButtonText.SENDING : SubmitButtonText.IDLE;
 };
 
 export {
   showSuccessMessage,
   showErrorMessage,
-  blockSubmitButton,
-  unblockSubmitButton
+  blockSubmitButton
 };

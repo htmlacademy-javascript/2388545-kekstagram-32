@@ -7,8 +7,7 @@ import { EFFECTS } from './constants.js';
 import {
   showSuccessMessage,
   showErrorMessage,
-  blockSubmitButton,
-  unblockSubmitButton
+  blockSubmitButton
 } from './server-send-messages.js';
 
 const imgUploadform = document.querySelector('.img-upload__form');
@@ -78,7 +77,9 @@ imgUploadform.addEventListener('submit', (evt) => {
         showSuccessMessage();
       })
       .catch(() => showErrorMessage())
-      .finally(unblockSubmitButton);
+      .finally(() => {
+        blockSubmitButton(false);
+      });
   }
 });
 
