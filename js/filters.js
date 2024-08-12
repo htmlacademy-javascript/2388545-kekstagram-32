@@ -6,17 +6,17 @@ import {
 } from './constants.js';
 
 const filters = document.querySelector('.img-filters');
-const filtersContainer = document.querySelector('.img-filters__form');
-const defaultButton = document.querySelector('#filter-default');
-const randomButton = document.querySelector('#filter-random');
-const discussedButton = document.querySelector('#filter-discussed');
+const filtersContainer = filters.querySelector('.img-filters__form');
+const defaultButton = filters.querySelector('#filter-default');
+const randomButton = filters.querySelector('#filter-random');
+const discussedButton = filters.querySelector('#filter-discussed');
 
 const showFilters = () => {
   filters.classList.remove('img-filters--inactive');
 };
 
 const setActiveButton = (button) => {
-  document.querySelector('.img-filters__button--active').classList.remove('img-filters__button--active');
+  filters.querySelector('.img-filters__button--active').classList.remove('img-filters__button--active');
   button.classList.add('img-filters__button--active');
 };
 
