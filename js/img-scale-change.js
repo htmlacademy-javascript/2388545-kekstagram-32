@@ -5,10 +5,11 @@ import {
   SCALE_DEFAULT
 } from './constants.js';
 
-const scaleSmaller = document.querySelector('.scale__control--smaller');
-const scaleBigger = document.querySelector('.scale__control--bigger');
-const scaleValue = document.querySelector('.scale__control--value');
-const imgPreview = document.querySelector('.img-upload__preview img');
+const imgUploadContainer = document.querySelector('.img-upload__preview-container');
+const scaleSmaller = imgUploadContainer.querySelector('.scale__control--smaller');
+const scaleBigger = imgUploadContainer.querySelector('.scale__control--bigger');
+const scaleValue = imgUploadContainer.querySelector('.scale__control--value');
+const imgPreview = imgUploadContainer.querySelector('.img-upload__preview img');
 
 let scaleNumber = parseInt(scaleValue.value, 10);
 

@@ -11,11 +11,11 @@ import {
 } from './server-send-messages.js';
 
 const imgUploadform = document.querySelector('.img-upload__form');
-const uploadInput = document.querySelector('.img-upload__input');
-const redactForm = document.querySelector('.img-upload__overlay');
-const closeFormButton = document.querySelector('.img-upload__cancel');
-const hashtagField = document.querySelector('.text__hashtags');
-const commentField = document.querySelector('.text__description');
+const uploadInput = imgUploadform.querySelector('.img-upload__input');
+const redactForm = imgUploadform.querySelector('.img-upload__overlay');
+const closeFormButton = imgUploadform.querySelector('.img-upload__cancel');
+const hashtagField = imgUploadform.querySelector('.text__hashtags');
+const commentField = imgUploadform.querySelector('.text__description');
 
 const openRedactForm = () => {
   redactForm.classList.remove('hidden');

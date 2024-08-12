@@ -1,10 +1,11 @@
 import { EFFECTS } from './constants.js';
 
-const imgPreview = document.querySelector('.img-upload__preview img');
-const filterList = document.querySelector('.effects__list');
-const sliderContainer = document.querySelector('.img-upload__effect-level');
-const sliderElement = document.querySelector('.effect-level__slider');
-const valueElement = document.querySelector('.effect-level__value');
+const imgUploadWrapper = document.querySelector('.img-upload__wrapper');
+const imgPreview = imgUploadWrapper.querySelector('.img-upload__preview img');
+const filterList = imgUploadWrapper.querySelector('.effects__list');
+const sliderContainer = imgUploadWrapper.querySelector('.img-upload__effect-level');
+const sliderElement = imgUploadWrapper.querySelector('.effect-level__slider');
+const valueElement = imgUploadWrapper.querySelector('.effect-level__value');
 
 const effectsArray = Object.keys(EFFECTS).map((key) => EFFECTS[key]);
 
@@ -22,7 +23,7 @@ const showSlider = () => {
 };
 
 const onSliderUpdate = () => {
-  const style = document.querySelector('.effects__radio:checked').value;
+  const style = imgUploadWrapper.querySelector('.effects__radio:checked').value;
   valueElement.value = sliderElement.noUiSlider.get();
   imgPreview.style.filter = `${EFFECTS[style].style}(${valueElement.value}${EFFECTS[style].unit})`;
 };
