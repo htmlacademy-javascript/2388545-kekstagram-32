@@ -13,16 +13,8 @@ const imgPreview = document.querySelector('.img-upload__preview img');
 let scaleNumber = parseInt(scaleValue.value, 10);
 
 const isScaleButtonDisabled = () => {
-  scaleSmaller.disabled = false;
-  scaleBigger.disabled = false;
-
-  if (scaleNumber <= SCALE_MIN) {
-    scaleSmaller.disabled = true;
-  }
-
-  if (scaleNumber >= SCALE_MAX) {
-    scaleBigger.disabled = true;
-  }
+  scaleSmaller.disabled = scaleNumber <= SCALE_MIN;
+  scaleBigger.disabled = scaleNumber >= SCALE_MAX;
 };
 
 const setStyle = (scale) => {
