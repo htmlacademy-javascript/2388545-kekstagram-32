@@ -1,13 +1,15 @@
 import { getPhotoList } from './add-pictures.js';
-import { getRandomArrayElement } from './utils.js'
+import { getRandomArrayElement, debounce } from './utils.js';
+import {
+  RANDOM_FILTER_COUNT,
+  RERENDER_DELAY
+} from './constants.js';
 
 const filters = document.querySelector('.img-filters');
 const filtersContainer = document.querySelector('.img-filters__form');
 const defaultButton = document.querySelector('#filter-default');
 const randomButton = document.querySelector('#filter-random');
 const discussedButton = document.querySelector('#filter-discussed');
-
-const RANDOM_FILTER_COUNT = 10;
 
 const showFilters = () => {
   filters.classList.remove('img-filters--inactive');
@@ -18,13 +20,11 @@ const setActiveButton = (button) => {
   button.classList.add('img-filters__button--active');
 };
 
-const setDefaultFilter = (photos, button) => {
-  setActiveButton(button)
+const setDefaultFilter = (photos) => {
   getPhotoList(photos);
 };
 
-const setRandomFilter = (photos, button) => {
-  setActiveButton(button);
+const setRandomFilter = (photos) => {
   const randomPhotos = [];
   while (randomPhotos.length !== RANDOM_FILTER_COUNT) {
     const randomElement = getRandomArrayElement(photos);
@@ -35,8 +35,7 @@ const setRandomFilter = (photos, button) => {
   getPhotoList(randomPhotos);
 };
 
-const setDiscussedFilter = (photos, button) => {
-  setActiveButton(button);
+const setDiscussedFilter = (photos) => {
   const unsortedPhotos = photos.map((photo) => ({ id: photo.id, comments: photo.comments.length }));
   const sortedPhotos = unsortedPhotos.sort((a, b) => {
     if (a.comments > b.comments) {
@@ -52,17 +51,23 @@ const setDiscussedFilter = (photos, button) => {
 };
 
 const onFilterClick = (photos) => {
-  filtersContainer.addEventListener('click', (evt) => {
+  filtersContainer.addEventListener('click', debounce((evt) => {
     if (evt.target === defaultButton) {
-      setDefaultFilter(photos, defaultButton);
+      setDefaultFilter(photos);
     }
     if (evt.target === randomButton) {
-      setRandomFilter(photos, randomButton);
+      setRandomFilter(photos);
     }
     if (evt.target === discussedButton) {
-      setDiscussedFilter(photos, discussedButton);
+      setDiscussedFilter(photos);
     }
-  });
-}
+  }, RERENDER_DELAY));
+};
+
+filters.addEventListener('click', (evt) => {
+  if (evt.target.classList.contains('img-filters__button')) {
+    setActiveButton(evt.target);
+  }
+});
 
 export { showFilters, onFilterClick };

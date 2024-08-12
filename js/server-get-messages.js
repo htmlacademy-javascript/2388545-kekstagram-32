@@ -13,4 +13,4 @@ const showDataError = () => {
   }, ALERT_SHOW_TIME);
 };
 
-export {showDataError};
+export { showDataError };

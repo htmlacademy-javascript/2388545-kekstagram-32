@@ -71,7 +71,7 @@ imgUploadform.addEventListener('submit', (evt) => {
     const formData = new FormData(evt.target);
     sendForm(formData)
       .then((response) => {
-        if(!response.ok){
+        if (!response.ok) {
           throw new Error();
         }
         closeRedactForm();

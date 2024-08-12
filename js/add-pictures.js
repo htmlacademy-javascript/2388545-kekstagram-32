@@ -9,7 +9,7 @@ const localPhotos = [];
 
 const clearPhotos = () => {
   document.querySelectorAll('.picture').forEach((card) => card.remove());
-}
+};
 
 const getPhotoList = (photoArray) => {
   clearPhotos();
